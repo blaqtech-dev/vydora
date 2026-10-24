@@ -1,0 +1,113 @@
+
+.login-page-note {
+  color: var(--text-muted);
+}
+
+
+.auth-submit:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.login-spinner {
+  animation: login-spin 1s linear infinite;
+}
+
+@keyframes login-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   VYDORA LOGIN PAGE — THEME SUPPORT
+========================================= */
+
+.auth-page {
+  background: var(--background);
+  color: var(--text-main);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.auth-page h1,
+.auth-page h2,
+.auth-page h3 {
+  color: var(--text-main);
+}
+
+.auth-page p,
+.login-page-note {
+  color: var(--text-muted);
+}
+
+
+
+.auth-page input,
+.auth-page select,
+.auth-page textarea {
+  background: var(--input-background);
+  color: var(--text-main);
+  border-color: var(--border);
+}
+
+.auth-page input::placeholder {
+  color: var(--text-muted);
+}
+
+.auth-page input:focus,
+.auth-page select:focus,
+.auth-page textarea:focus {
+  border-color: var(--primary);
+  outline-color: var(--primary);
+}
+
+.auth-submit {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.auth-submit:hover:not(:disabled) {
+  background: var(--primary-dark);
+}
+
+.auth-submit:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.auth-page a {
+  color: var(--primary);
+}
+
+.auth-page a:hover {
+  color: var(--primary-dark);
+}
+
+/* Keep the spinner visible in both themes */
+.login-spinner {
+  animation: login-spin 1s linear infinite;
+}
+
+/* Smooth transitions */
+.auth-card,
+.auth-container,
+.login-card,
+.auth-page input,
+.auth-page select,
+.auth-page textarea,
+.auth-submit {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+@media (min-width: 761px) {
+  .auth-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,146 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  font-family: 'Inter', sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color-scheme: light;
+
+  --primary: #7856e8;
+  --primary-dark: #6541d5;
+  --primary-light: #f0ebff;
+
+  --text-main: #181622;
+  --text-muted: #777486;
+  --border: #eae8f0;
+  --surface: #faf9fc;
+  --background: #ffffff;
+  --card-background: #ffffff;
+  --input-background: #ffffff;
+  --hover-background: #f5f2fc;
+  --shadow: 0 5px 24px rgba(38, 25, 72, 0.05);
+}
+
+/* Dark theme */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --primary: #a58aff;
+  --primary-dark: #8b6cf0;
+  --primary-light: #30264b;
+
+  --text-main: #f2effa;
+  --text-muted: #aaa4bd;
+  --border: #393347;
+  --surface: #211d2c;
+  --background: #17141f;
+  --card-background: #211d2c;
+  --input-background: #292436;
+  --hover-background: #302940;
+  --shadow: 0 5px 24px rgba(0, 0, 0, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+  transition: background-color 0.2s ease;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--text-main);
+  background: var(--background);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: 'Inter', sans-serif;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+#root {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text-main);
+}
+
+main {
+  min-height: 60vh;
+}
+
+.container {
+  width: min(1120px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+::selection {
+  color: #ffffff;
+  background: var(--primary);
+}
+
+/* Shared form colors */
+input,
+textarea,
+select {
+  color: var(--text-main);
+  background-color: var(--input-background);
+  border-color: var(--border);
+}
+
+/* Keep transitions subtle */
+button,
+a,
+input,
+textarea,
+select {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}

@@ -1,0 +1,92 @@
+
+.footer {
+  border-top: 1px solid var(--border);
+  background: white;
+}
+
+.footer-inner {
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+}
+
+.footer-brand-icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  color: white;
+  background: var(--primary);
+  border-radius: 9px;
+}
+
+.footer-inner > p,
+.footer-copyright {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+
+/* =========================================
+   VYDORA FOOTER — LIGHT/DARK THEME
+========================================= */
+
+.footer {
+  background: var(--background);
+  border-top-color: var(--border);
+  color: var(--text-main);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.footer-brand {
+  color: var(--text-main);
+}
+
+.footer-inner > p,
+.footer-copyright {
+  color: var(--text-muted);
+}
+
+.footer-brand-icon {
+  color: #ffffff;
+  background: var(--primary);
+}
+
+/* Smooth theme transitions */
+.footer-inner,
+.footer-brand,
+.footer-inner > p,
+.footer-copyright {
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+
+@media (max-width: 600px) {
+  .footer-inner {
+    min-height: 110px;
+    padding-block: 22px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .footer-inner > p {
+    order: 3;
+    width: 100%;
+  }
+}

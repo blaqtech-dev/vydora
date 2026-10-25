@@ -16,6 +16,7 @@ import {
   Play,
   Menu,
   UserRound,
+    CreditCard,
   ChevronDown,
   X,
   HardDrive,
@@ -271,14 +272,14 @@ const handleLogout = async () => {
             <span>My storage</span>
           </Link>
 
-           <Link
-            to="/pricing"
-            className="dashboard-nav-link"
-            onClick={() => setSidebarOpen(false)}
-          >
-            <FolderOpen size={19} />
-            <span>pricing</span>
-          </Link>
+<Link
+  to="/pricing"
+  className="dashboard-nav-link"
+  onClick={() => setSidebarOpen(false)}
+>
+  <CreditCard size={19} />
+  <span>Pricing</span>
+</Link>
         </nav>
 
         <div className="sidebar-section-label sidebar-settings-label">

@@ -15,6 +15,8 @@ import Profile from './pages/profile/profile.jsx';
 import Settings from './pages/settings/settings.jsx';
 import Pricing from './pages/pricing/pricing.jsx';
 import PaymentCallback from './pages/paymentcallback/paymentcallback.jsx';
+import AdminRoute from './components/auth/adminroutes.jsx';
+import Admin from './pages/admin/admin.jsx';
 
 function ComingSoon({ title, description }) {
   return (
@@ -34,6 +36,7 @@ function App() {
   '/storage',
   '/settings',
   '/profile',
+  '/admin',
 ];
   const isWorkspacePage = workspacePaths.includes(location.pathname);
 
@@ -63,6 +66,9 @@ function App() {
   path="/payment/callback"
   element={<PaymentCallback />}
 />
+<Route element={<AdminRoute />}>
+  <Route path="/admin" element={<Admin />} />
+</Route>
           </Route>
 
           {/* Fallback */}

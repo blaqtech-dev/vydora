@@ -66,6 +66,14 @@ body {
     color 0.2s ease;
 }
 
+/* Prevent iPhone Safari from zooming into input fields */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+
 body,
 button,
 input,

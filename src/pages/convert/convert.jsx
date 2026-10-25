@@ -254,7 +254,7 @@ const audioName = `${file.name.replace(/\.[^/.]+$/, '')}.${format}`;
 // Upload the converted audio to the user's private cloud library.
 setStatus('Saving audio to your cloud library...');
 
-c
+
 const savedFile = await uploadCloudAudio({
   name: audioName,
   blob,

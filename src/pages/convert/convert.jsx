@@ -133,16 +133,21 @@ function Convert() {
     }
   };
 
-  const convertFile = async () => {
-    if (!file || isConverting) return;
+ 
+const convertFile = async () => {
+  if (!file || isConverting) return;
 
-    setError('');
-    setStatus('Preparing conversion...');
-    setIsConverting(true);
-    setProgress(0);
-    setOutput(null);
+  let conversionReserved = false;
+  let conversionSucceeded = false;
 
-    try {
+  setError('');
+  setStatus('Preparing conversion...');
+  setIsConverting(true);
+  setProgress(0);
+  setOutput(null);
+
+  try {
+
   // Reserve one conversion using the authenticated Supabase user.
   const {
     data: reservation,
@@ -155,22 +160,23 @@ function Convert() {
     );
   }
 
+  
   if (!reservation?.allowed) {
     setUsage(reservation);
 
     setError(
-      `You have reached your daily limit of ${reservation.limit} conversions on the ${reservation.plan} plan. ${
-        reservation.plan === 'free'
-          ? 'Upgrade to Pro for 30 conversions per day.'
-          : 'Please try again after the daily reset.'
-      }`,
+      reservation.plan === 'free'
+        ? `You've used all ${reservation.limit} free conversions for today. Upgrade to Pro for 30 conversions per day.`
+        : `You've used all ${reservation.limit} Pro conversions for today. Please try again after the daily reset.`,
     );
 
     setStatus('');
     return;
   }
 
+  conversionReserved = true;
   setUsage(reservation);
+
 
   // Continue with your existing FFmpeg conversion.
   let ffmpeg = ffmpegRef.current;
@@ -248,6 +254,7 @@ const audioName = `${file.name.replace(/\.[^/.]+$/, '')}.${format}`;
 // Upload the converted audio to the user's private cloud library.
 setStatus('Saving audio to your cloud library...');
 
+c
 const savedFile = await uploadCloudAudio({
   name: audioName,
   blob,
@@ -255,6 +262,7 @@ const savedFile = await uploadCloudAudio({
 });
 
 const url = URL.createObjectURL(blob);
+
 
       if (outputUrlRef.current) {
         URL.revokeObjectURL(outputUrlRef.current);
@@ -271,12 +279,38 @@ setOutput({
   storagePath: savedFile.storagePath,
 });
 
-      setProgress(100);
-      setStatus('Conversion complete!');
-  } catch (conversionError) {
+     
+setProgress(100);
+setStatus('Conversion complete!');
+conversionSucceeded = true;
+
+ 
+} catch (conversionError) {
   console.error('Vydora conversion error:', conversionError);
 
   ffmpegRef.current = null;
+
+  if (conversionReserved && !conversionSucceeded) {
+    try {
+      const { data, error: releaseError } = await supabase.rpc(
+        'release_vydora_conversion'
+      );
+
+      if (releaseError) {
+        console.error(
+          'Could not release conversion allowance:',
+          releaseError
+        );
+      } else if (data) {
+        setUsage(data);
+      }
+    } catch (releaseError) {
+      console.error(
+        'Conversion allowance rollback failed:',
+        releaseError
+      );
+    }
+  }
 
   setError(
     conversionError?.message ||
@@ -287,6 +321,7 @@ setOutput({
 } finally {
   setIsConverting(false);
 }
+
   }
 
   const downloadOutput = () => {

@@ -1,14 +1,19 @@
-
 .payment-callback {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
   background: var(--background, #f8f7ff);
+  color: var(--text-color, #242039);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .payment-callback-card {
+  box-sizing: border-box;
   width: 100%;
   max-width: 460px;
   padding: 36px 28px;
@@ -18,19 +23,30 @@
   border: 1px solid var(--border-color, #e9e5f5);
   border-radius: 22px;
   box-shadow: 0 16px 50px rgba(61, 42, 120, 0.08);
+  overflow-wrap: anywhere;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .payment-callback-card h1 {
   margin: 20px 0 12px;
+  color: inherit;
   font-size: 1.6rem;
+  line-height: 1.3;
 }
 
 .payment-callback-card p {
+  margin: 12px 0;
+  color: inherit;
   line-height: 1.7;
   overflow-wrap: anywhere;
 }
 
 .payment-icon {
+  display: block;
   margin: 0 auto;
 }
 
@@ -42,33 +58,125 @@
   color: #dc2626;
 }
 
-.spinning {
+.payment-icon.spinning {
+  color: #7657e8;
   animation: payment-spin 1s linear infinite;
 }
 
 .payment-reference {
   margin-top: 20px;
+  padding: 12px;
+  border: 1px solid var(--border-color, #e9e5f5);
+  border-radius: 10px;
+  background: var(--background, #f8f7ff);
   font-size: 0.85rem;
-  opacity: 0.75;
+  opacity: 0.85;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .payment-callback-card button,
-.payment-back-link {
-  display: inline-block;
+.payment-callback-card .payment-back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 100%;
   margin-top: 18px;
   padding: 12px 22px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 10px;
   background: #7657e8;
-  color: white;
+  color: #ffffff;
   text-decoration: none;
   font: inherit;
   font-weight: 600;
   cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.payment-callback-card button:hover,
+.payment-callback-card .payment-back-link:hover {
+  background: #6544d5;
+  box-shadow: 0 6px 18px rgba(118, 87, 232, 0.25);
+  transform: translateY(-1px);
+}
+
+.payment-callback-card button:focus-visible,
+.payment-callback-card .payment-back-link:focus-visible {
+  outline: 3px solid rgba(118, 87, 232, 0.45);
+  outline-offset: 3px;
+}
+
+.payment-callback-card button:active,
+.payment-callback-card .payment-back-link:active {
+  transform: translateY(0);
+}
+
+/* Explicit dark-mode support */
+.dark .payment-callback,
+[data-theme='dark'] .payment-callback,
+html.dark .payment-callback {
+  background: var(--background, #080b1a);
+  color: var(--text-color, #f1f0fa);
+}
+
+.dark .payment-callback-card,
+[data-theme='dark'] .payment-callback-card,
+html.dark .payment-callback-card {
+  background: var(--card-background, #11152a);
+  color: var(--text-color, #f1f0fa);
+  border-color: var(--border-color, #292e46);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.25);
+}
+
+.dark .payment-reference,
+[data-theme='dark'] .payment-reference,
+html.dark .payment-reference {
+  background: var(--background, #080b1a);
+  border-color: var(--border-color, #292e46);
+  color: var(--text-color, #f1f0fa);
 }
 
 @keyframes payment-spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-callback {
+    padding: 16px;
+  }
+
+  .payment-callback-card {
+    padding: 28px 20px;
+    border-radius: 18px;
+  }
+
+  .payment-callback-card h1 {
+    font-size: 1.4rem;
+  }
+
+  .payment-callback-card button,
+  .payment-callback-card .payment-back-link {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .payment-callback,
+  .payment-callback-card,
+  .payment-callback-card button,
+  .payment-callback-card .payment-back-link {
+    transition: none;
+  }
+
+  .payment-icon.spinning {
+    animation-duration: 2s;
   }
 }

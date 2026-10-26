@@ -1291,6 +1291,125 @@
     border-color 0.2s ease;
 }
 
+
+
+.dashboard-install-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-notification-button {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 12px;
+  background: var(--card-bg, #fff);
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dashboard-notification-button:hover {
+  background: var(--hover-bg, #f3f4f6);
+}
+
+.dashboard-install-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 1000;
+  width: min(360px, calc(100vw - 32px));
+  max-height: min(75vh, 560px);
+  overflow-y: auto;
+  padding: 20px;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 16px;
+  background: var(--card-bg, #fff);
+  color: var(--text-color, #1f2937);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14);
+}
+
+.dashboard-install-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.dashboard-install-heading h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.dashboard-install-heading p,
+.dashboard-install-note {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.75;
+}
+
+.dashboard-install-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.dashboard-install-section {
+  padding: 14px 0;
+  border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.dashboard-install-section h4 {
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+
+.dashboard-install-section ol {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.dashboard-install-section li {
+  padding-left: 3px;
+  margin-bottom: 4px;
+}
+
+.dashboard-install-note {
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.dashboard-notification-button {
+  color: #64748b;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.dark .dashboard-notification-button {
+  color: #c4b5fd;
+  background: #1e1b2e;
+  border-color: #3b3455;
+}
+
+.dark .dashboard-notification-button:hover {
+  color: #ffffff;
+  background: #312750;
+  border-color: #6d4aff;
+}
+
 @media (max-width: 1100px) {
   .dashboard-sidebar {
     width: 220px;
@@ -1467,6 +1586,15 @@
     margin-left: 56px;
   }
 }
+
+
+@media (max-width: 480px) {
+  .dashboard-install-dropdown {
+    right: -8px;
+    padding: 16px;
+  }
+}
+
 
 @media (max-width: 420px) {
   .dashboard-breadcrumb span:first-child {

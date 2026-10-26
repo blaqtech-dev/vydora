@@ -756,6 +756,28 @@
 /* Mobile theme consistency */
 
 
+.convert-upgrade-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  padding: 11px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #6d4aff;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.convert-upgrade-button:hover {
+  background: #5938e8;
+  transform: translateY(-1px);
+}
+
+
 @media (max-width: 600px) {
   .convert-topbar {
     height: 66px;

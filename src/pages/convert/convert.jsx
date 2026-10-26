@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   AudioLines,
   ArrowLeft,
@@ -79,6 +79,7 @@ function Convert() {
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
   const [output, setOutput] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     return () => {
@@ -490,11 +491,23 @@ conversionSucceeded = true;
               </p>
             )}
 
-            {error && (
-              <div className="convert-error" role="alert">
-                {error}
-              </div>
-            )}
+            
+{error && (
+  <div className="convert-error" role="alert">
+    <p>{error}</p>
+
+    {usage?.allowed === false && usage?.plan === 'free' && (
+      <button
+        type="button"
+        className="convert-upgrade-button"
+        onClick={() => navigate('/pricing')}
+      >
+        View Pro plans
+      </button>
+    )}
+  </div>
+)}
+
 
             {status && (
               <div className="convert-status" role="status">

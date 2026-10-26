@@ -84,6 +84,7 @@ function Dashboard() {
   const [loadError, setLoadError] = useState('');
 const [user, setUser] = useState(null);
 const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+const [installHelpOpen, setInstallHelpOpen] = useState(false);
  
 useEffect(() => {
   let cancelled = false;
@@ -338,6 +339,64 @@ const handleLogout = async () => {
 
 
         <div className="dashboard-topbar-actions">
+
+            
+<div className="dashboard-install-menu">
+  <button
+    type="button"
+    className="dashboard-notification-button"
+    aria-label="How to install Vydora"
+    aria-expanded={installHelpOpen}
+    onClick={() => setInstallHelpOpen((open) => !open)}
+  >
+    <Bell size={20} />
+  </button>
+
+  {installHelpOpen && (
+    <div className="dashboard-install-dropdown">
+      <div className="dashboard-install-heading">
+        <div>
+          <h3>Install Vydora</h3>
+          <p>Access Vydora quickly from your home screen.</p>
+        </div>
+
+        <button
+          type="button"
+          className="dashboard-install-close"
+          aria-label="Close installation guide"
+          onClick={() => setInstallHelpOpen(false)}
+        >
+          <X size={18} />
+        </button>
+      </div>
+
+      <div className="dashboard-install-section">
+        <h4>Android</h4>
+        <ol>
+          <li>Open Vydora in Chrome.</li>
+          <li>Tap the three-dot menu in the top corner.</li>
+          <li>Select <strong>Install app</strong> or <strong>Add to Home screen</strong>.</li>
+          <li>Follow the prompt to finish installing.</li>
+        </ol>
+      </div>
+
+      <div className="dashboard-install-section">
+        <h4>iPhone</h4>
+        <ol>
+          <li>Open Vydora in Safari.</li>
+          <li>Tap the <strong>Share</strong> icon.</li>
+          <li>Select <strong>Add to Home Screen</strong>.</li>
+          <li>Tap <strong>Add</strong>.</li>
+        </ol>
+      </div>
+
+      <p className="dashboard-install-note">
+        Menu options may vary depending on your device and browser.
+      </p>
+    </div>
+  )}
+</div>
+
   <div className="dashboard-profile-menu">
     <button
       type="button"
